@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All Students</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+body {
+  font-family:Poppins;
+  background:#0b1220;
+  color:#e5e7eb;
+}
+
+.container {
+  padding:30px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+h2 { margin:0; }
+
+.card {
+  background:#111827;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:16px;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.2s;
+}
+
+.card:hover {
+  transform:translateY(-3px);
+  border-color:#3b82f6;
+}
+
+.student {
+  font-weight:600;
+  font-size:15px;
+  color:#93c5fd;
+}
+
+.title {
+  font-size:18px;
+  font-weight:600;
+  margin-top:6px;
+}
+
+.meta {
+  font-size:13px;
+  opacity:0.8;
+  margin-top:4px;
+}
+
+.type {
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:6px;
+  background:#1f2937;
+  font-size:12px;
+  margin-top:6px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+  <h2>All Students</h2>
+
+  <div style="display:flex; gap:12px; align-items:center;">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search by name or email"
+      style="
+        padding:6px 10px;
+        border-radius:8px;
+        border:1px solid rgba(255,255,255,0.2);
+        background:#111827;
+        color:white;
+      "
+    >
+  </div>
+</div>
+
+  <div id="studentList"></div>
+</div>
+
+<script src="teacher-students.js"></script>
+</body>
+</html>

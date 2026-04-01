@@ -36,7 +36,7 @@ if (logoutBtn) {
 
 if (viewStudentsBtn) {
   viewStudentsBtn.addEventListener('click', () => {
-    alert('Next step: student list page (we will build this)');
+    window.location.href = 'teacher-students.html';
   });
 }
 
