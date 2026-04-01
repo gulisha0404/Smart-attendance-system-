@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Portal — Sign Up</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <main class="login-wrapper">
+    <div class="login-card">
+      <header class="card-header">
+        <h1 class="title">Welcome</h1>
+        <div class="subtitle">Create Your Account</div>
+      </header>
+
+      <section class="card-body">
+        <h2 class="signin">Sign Up</h2>
+
+        <form id="signupForm" autocomplete="off">
+          <!-- EMAIL -->
+          <label class="input-group">
+            <i class="fa-solid fa-envelope input-icon"></i>
+            <input type="email" name="email" placeholder="Email ID" required>
+          </label>
+
+          <!-- PASSWORD -->
+          <label class="input-group">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" name="password" placeholder="Password (min 6 characters)" required>
+          </label>
+
+          <!-- CONFIRM PASSWORD -->
+          <label class="input-group">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+          </label>
+          
+          <div class="input-group" style="background: transparent; border: none; padding-left: 0; flex-direction: column; align-items: flex-start; gap: 6px; color: #fff;">
+          <span style="font-size: 13px; font-weight: 500;">Register as</span>
+          <div style="display:flex; gap:16px; font-size: 13px;">
+          <label>
+            <input type="radio" name="role" value="student" checked>
+            Student
+          </label>
+          <label>
+          <input type="radio" name="role" value="teacher">
+            Teacher
+          </label>
+        </div>
+      </div>    
+
+          <!-- CHECKBOX -->
+          <label class="checkbox-row">
+            <input type="checkbox" id="agree-signup" required>
+            <span>I Agree to the Terms & Conditions</span>
+          </label>
+
+          <!-- SIGN UP BUTTON -->
+          <button class="btn-login" type="submit">Create Account</button>
+
+          <!-- LINKS -->
+          <div class="links">
+            <div class="small-links">
+              <span>Already a user? <a href="index.html">Log In</a></span>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="signup.js"></script>
+</body>
+</html>

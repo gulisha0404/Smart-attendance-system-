@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resume Builder</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+body{
+font-family:Poppins;
+background:#0f172a;
+color:white;
+margin:0;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:30px;
+}
+
+.card{
+background:#111827;
+padding:20px;
+border-radius:14px;
+margin-bottom:20px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+h2{
+margin-top:0;
+}
+
+input,textarea{
+width:100%;
+padding:8px;
+margin-top:6px;
+margin-bottom:12px;
+border-radius:8px;
+border:1px solid rgba(255,255,255,0.2);
+background:#0b1220;
+color:white;
+}
+
+button{
+padding:10px 18px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.ach-item{
+margin-bottom:6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Resume Builder</h1>
+<p>Select details and generate your resume.</p>
+
+<!-- Career Objective -->
+<div class="card">
+<h2>Career Objective</h2>
+
+<textarea id="careerObjective" rows="4"
+placeholder="Write your career objective"></textarea>
+
+</div>
+
+
+<!-- Internship -->
+<div class="card">
+
+<h2>Internship</h2>
+
+<input id="internshipTitle" placeholder="Internship Title">
+<textarea id="internshipDesc" rows="3"
+placeholder="Describe your internship"></textarea>
+
+</div>
+
+<!-- Major Project -->
+<div class="card">
+
+<h2>Major Project (Optional)</h2>
+
+<input id="majorTitle" placeholder="Project Title">
+
+<textarea id="majorDesc" rows="3"
+placeholder="Project Description"></textarea>
+
+</div>
+
+
+<!-- Minor Project -->
+<div class="card">
+
+<h2>Minor Project (Optional)</h2>
+
+<input id="minorTitle" placeholder="Project Title">
+
+<textarea id="minorDesc" rows="3"
+placeholder="Project Description"></textarea>
+
+</div>
+
+
+<!-- Strengths -->
+<div class="card">
+
+<h2>Strengths (max 2)</h2>
+
+<input id="strength1" placeholder="Strength 1">
+<input id="strength2" placeholder="Strength 2">
+
+</div>
+
+
+<!-- Areas of Improvement -->
+<div class="card">
+
+<h2>Areas of Improvement (max 2)</h2>
+
+<input id="improve1" placeholder="Area 1">
+<input id="improve2" placeholder="Area 2">
+</div>
+<!-- Hobbies -->
+<div class="card">
+
+<h2>Hobbies (max 2)</h2>\
+<input id="hobby1" placeholder="Hobby 1">
+<input id="hobby2" placeholder="Hobby 2">
+
+</div>
+
+
+<!-- Areas of Interest -->
+<div class="card">
+
+<h2>Areas of Interest (max 2)</h2>
+
+<input id="interest1" placeholder="Interest 1">
+<input id="interest2" placeholder="Interest 2">
+
+</div>
+
+
+<!-- Photo Upload -->
+<div class="card">
+
+<h2>Upload Photo (Mandatory)</h2>
+
+<input type="file" id="photoUpload" accept="image/*">
+
+</div>
+
+
+<!-- Achievements Selection -->
+<div class="card">
+
+<h2>Select Achievements to Include</h2>
+
+<div id="achievementsList">
+Loading achievements...
+</div>
+</div>
+<button id="generateBtn">Generate Resume</button>
+
+</div>
+
+<script src="resume-builder.js"></script>
+
+</body>
+</html>

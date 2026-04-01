@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All Student Achievements</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+body {
+  font-family:Poppins;
+  background:#0b1220;
+  color:#e5e7eb;
+}
+
+.container {
+  padding:30px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+h2 { margin:0; }
+
+.card {
+  background:#111827;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:16px;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.2s;
+}
+
+.card:hover {
+  transform:translateY(-3px);
+  border-color:#3b82f6;
+}
+
+.student {
+  font-weight:600;
+  font-size:15px;
+  color:#93c5fd;
+}
+
+.title {
+  font-size:18px;
+  font-weight:600;
+  margin-top:6px;
+}
+
+.meta {
+  font-size:13px;
+  opacity:0.8;
+  margin-top:4px;
+}
+
+.type {
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:6px;
+  background:#1f2937;
+  font-size:12px;
+  margin-top:6px;
+}
+
+a.cert {
+  display:inline-block;
+  margin-top:10px;
+  color:#60a5fa;
+  font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="statsBar" style="
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:20px;
+">
+
+  <div class="card">
+    <div class="meta">Total Achievements</div>
+    <div id="statTotal" style="font-size:22px;font-weight:600;">0</div>
+  </div>
+
+  <div class="card">
+    <div class="meta">Pending</div>
+    <div id="statPending" style="font-size:22px;font-weight:600;color:#facc15;">0</div>
+  </div>
+
+  <div class="card">
+    <div class="meta">Approved</div>
+    <div id="statApproved" style="font-size:22px;font-weight:600;color:#22c55e;">0</div>
+  </div>
+
+  <div class="card">
+    <div class="meta">Rejected</div>
+    <div id="statRejected" style="font-size:22px;font-weight:600;color:#ef4444;">0</div>
+  </div>
+
+</div>
+
+  <div class="header">
+  <h2>All Student Achievements</h2>
+
+  <div style="display:flex; gap:12px; align-items:center;">
+
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search by name or email"
+      style="
+        padding:6px 10px;
+        border-radius:8px;
+        border:1px solid rgba(255,255,255,0.2);
+        background:#111827;
+        color:white;
+      "
+    >
+
+    <select id="typeFilter" style="
+      background:#111827;
+      color:white;
+      border:1px solid rgba(255,255,255,0.2);
+      padding:6px 10px;
+      border-radius:8px;
+    ">
+      <option value="all">All</option>
+      <option value="Academic">Academic</option>
+      <option value="Non Academic">Non Academic</option>
+      <option value="Cultural">Cultural</option>
+      <option value="Certification">Certification</option>
+    </select>
+
+  </div>
+</div>
+
+  <div id="achievementList"></div>
+</div>
+
+<script src="teacher-achievements.js"></script>
+</body>
+</html>

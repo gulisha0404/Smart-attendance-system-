@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Portal — Login</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- left big background image -->
+  <div class="page-bg"></div>
+
+  <main class="login-wrapper">
+    <div class="login-card">
+      <header class="card-header">
+        <h1 class="title">Welcome</h1>
+        <div class="subtitle">To Student Portal</div>
+      </header>
+
+      <section class="card-body">
+        <h2 class="signin">Log In</h2>
+
+        <form id="loginForm" autocomplete="off">
+          <!-- EMAIL -->
+          <label class="input-group">
+            <i class="fa-solid fa-envelope input-icon"></i>
+            <input type="email" name="email" placeholder="Email ID" required>
+          </label>
+
+          <!-- PASSWORD -->
+          <label class="input-group">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+          </label>
+
+          <!-- CAPTCHA -->
+          <div class="captcha-row">
+            <label class="input-group captcha-input">
+              <i class="fa-solid fa-keyboard input-icon"></i>
+              <input id="captchaField" type="text" placeholder="Enter Captcha" required>
+            </label>
+
+            <div class="captcha-box" id="captchaBox">
+              <span id="captchaText">714036</span>
+              <button type="button" id="refreshCaptcha" title="Refresh captcha">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- CHECKBOX -->
+          <label class="checkbox-row">
+            <input type="checkbox" id="agree" required>
+            <span>I Have Read the Instructions</span>
+          </label>
+
+          <div class="input-group" style="background: transparent; border:none; padding-left:0; flex-direction:column; align-items:flex-start; gap:6px;">
+            <span style="font-size:13px; font-weight:500; color:#fff;">
+            Login as
+            </span>
+          <div style="display:flex; gap:16px; font-size:13px; color:#fff;">
+        <label>
+        <input type="radio" name="loginRole" value="student" checked>
+          Student
+        </label>
+        <label>
+       <input type="radio" name="loginRole" value="teacher">
+          Teacher
+        </label>
+      </div>
+    </div>
+
+          <!-- LOGIN BUTTON -->
+          <button class="btn-login" type="submit">Login</button>
+
+          <!-- LINKS -->
+          <div class="links">
+            <a href="#" class="manual">Student Portal User Manual</a>
+            <div class="small-links">
+              <!-- IMPORTANT: link to signup.html -->
+              <span>New User? <a href="signup.html">Register Now!</a></span>
+              <a href="#">Forgot Password?</a>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Portal — Achievements</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #fff;
+      margin: 0;
+      background: #0f172a;
+    }
+
+    .ach-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ach-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background: linear-gradient(90deg, rgba(12,56,86,0.98), rgba(41,122,198,0.95));
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    }
+
+    .ach-logo {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .ach-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .ach-btn {
+      border: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .ach-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .ach-content {
+      flex: 1;
+      padding: 28px 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .ach-title {
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .ach-subtitle {
+      font-size: 14px;
+      opacity: 0.85;
+      max-width: 540px;
+    }
+
+    .ach-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(280px, 1fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    /* LEFT CARD: add new achievement */
+    .ach-card {
+      background: #f9fafb;
+      color: #111827;
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(15,23,42,0.45);
+      padding: 18px 18px 20px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .ach-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: #1d4ed8;
+    }
+
+    .ach-card-header i {
+      font-size: 18px;
+    }
+
+    .ach-card-header span {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .ach-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .ach-field label {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .ach-field input,
+    .ach-field select {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .ach-field input:focus,
+    .ach-field select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
+    }
+
+    .ach-save-btn {
+      margin-top: 16px;
+      width: 100%;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #16a34a;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .ach-save-btn:hover {
+      background: #15803d;
+    }
+
+    #achMessage {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    /* RIGHT SIDE: list of achievements */
+    .ach-list-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 12px 24px rgba(15,23,42,0.5);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .ach-list-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .ach-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .ach-item {
+      padding: 9px 10px;
+      border-radius: 10px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ach-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ach-item-title {
+      font-weight: 600;
+    }
+
+    .ach-item-type {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.6);
+    }
+
+    .ach-item-date {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 800px) {
+      .ach-layout {
+        grid-template-columns: 1fr;
+      }
+      .ach-content {
+        padding: 20px 18px 32px;
+      }
+      .ach-topbar {
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ach-wrapper">
+    <header class="ach-topbar">
+      <div class="ach-logo">Student Portal</div>
+      <div class="ach-nav-right">
+        <span id="achEmailLabel"><i class="fa-regular fa-user"></i> Logged in</span>
+        <button class="ach-btn" id="backHomeBtn"><i class="fa-solid fa-arrow-left"></i> Home</button>
+        <button class="ach-btn" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </header>
+
+    <main class="ach-content">
+      <div>
+        <h1 class="ach-title">Achievements</h1>
+        <p class="ach-subtitle">
+          Add your academic, non-academic, cultural, certification and other achievements.
+        </p>
+      </div>
+
+      <section class="ach-layout">
+        <!-- LEFT: Add new -->
+        <article class="ach-card">
+          <div class="ach-card-header">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Add New Achievement</span>
+          </div>
+
+          <form id="achForm">
+            <div class="ach-field">
+              <label for="achTitle">Achievement Title</label>
+              <input type="text" id="achTitle" placeholder="E.g., Robotics Competition Winner">
+            </div>
+
+            <div class="ach-field">
+              <label for="achType">Type</label>
+              <select id="achType">
+                <option>Academic</option>
+                <option>Non Academic</option>
+                <option>Cultural</option>
+                <option>Certification</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="ach-field">
+              <label for="achDate">Date Completed</label>
+              <input type="date" id="achDate">
+            </div>
+
+            <div class="ach-field">
+              <label for="achFile">Certificate (PDF, optional)</label>
+              <input type="file" id="achFile" accept="application/pdf">
+            </div>
+
+            <div class="ach-field" id="achRemoveWrapper" style="display:none;">
+              <label>
+              <input type="checkbox" id="achRemoveCert" style="margin-right:6px;">
+              Remove existing certificate
+              </label>
+            </div>
+
+            <button type="submit" class="ach-save-btn">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Save Achievement</span>
+            </button>
+
+            <div id="achMessage"></div>
+          </form>
+        </article>
+
+        <!-- RIGHT: list -->
+        <article class="ach-list-card">
+          <h2 class="ach-list-title">Your Achievements</h2>
+          <div id="achList" class="ach-list">
+            <!-- JS will fill here -->
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="achievements.js"></script>
+</body>
+</html>
+
