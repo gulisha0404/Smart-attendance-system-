@@ -181,8 +181,19 @@ function renderAchievements(list) {
       dateEl.textContent = 'Completed: N/A';
     }
 
+    const statusEl = document.createElement('div');
+    statusEl.className = 'ach-item-status';
+    const st = ach.status || 'pending';
+    statusEl.innerHTML = `Status: <strong style="color: ${
+        st === 'approved' ? '#22c55e' :
+        st === 'rejected' ? '#ef4444' : '#facc15'
+    }">${st}</strong>`;
+    statusEl.style.fontSize = '11px';
+    statusEl.style.marginTop = '2px';
+
     item.appendChild(header);
     item.appendChild(dateEl);
+    item.appendChild(statusEl);
 
     // certificate link (if pdf attached)
     if (ach.certificatePath) {

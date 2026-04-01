@@ -51,7 +51,8 @@ const userSchema = new mongoose.Schema({
       type: { type: String, default: 'Academic' },
       dateCompleted: { type: Date },
       certificatePath: { type: String, default: '' },
-      createdAt: { type: Date, default: Date.now }
+      createdAt: { type: Date, default: Date.now },
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' }
     }
   ]
 }, { collection: 'users' });

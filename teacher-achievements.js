@@ -75,6 +75,10 @@ function renderList(dataArray) {
             : 'N/A'
         }
       </div>
+      <div class="meta">Status: <strong style="color: ${
+        a.status === 'approved' ? '#22c55e' :
+        a.status === 'rejected' ? '#ef4444' : '#facc15'
+      }">${a.status || 'pending'}</strong></div>
       ${
         a.certificatePath
           ? `<a class="cert" href="${a.certificatePath}" target="_blank">
@@ -82,10 +86,40 @@ function renderList(dataArray) {
              </a>`
           : ''
       }
+      ${
+        (!a.status || a.status === 'pending') ? `
+          <div style="margin-top: 10px; display: flex; gap: 8px;">
+            <button onclick="updateStatus('${a.userId}', '${a.achievementId}', 'approved')" style="background: #22c55e; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Approve</button>
+            <button onclick="updateStatus('${a.userId}', '${a.achievementId}', 'rejected')" style="background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Reject</button>
+          </div>
+        ` : ''
+      }
     `;
 
     list.appendChild(div);
   });
+}
+
+async function updateStatus(userId, achId, status) {
+  try {
+    const resp = await fetch(`/api/teacher/achievements/${userId}/${achId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ status })
+    });
+
+    if (resp.ok) {
+      loadAchievements(); // Reload to show updated status
+    } else {
+      const data = await resp.json();
+      alert('Error: ' + data.error);
+    }
+  } catch (err) {
+    alert('Server error while updating status');
+  }
 }
 
 // ===============================
@@ -136,7 +170,7 @@ function updateStats(data){
 
   const total = data.length;
 
-  const pending = data.filter(a => a.status === 'pending').length;
+  const pending = data.filter(a => !a.status || a.status === 'pending').length;
   const approved = data.filter(a => a.status === 'approved').length;
   const rejected = data.filter(a => a.status === 'rejected').length;
 

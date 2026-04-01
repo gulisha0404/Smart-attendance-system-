@@ -542,12 +542,15 @@ app.get('/api/teacher/achievements', authRequired, teacherOnly, async (req, res)
 
       (user.achievements || []).forEach(ach => {
         allAchievements.push({
+          userId: user._id,
+          achievementId: ach._id,
           studentEmail: user.email,
           studentName: name,
           title: ach.title,
           type: ach.type,
           dateCompleted: ach.dateCompleted,
-          certificatePath: ach.certificatePath
+          certificatePath: ach.certificatePath,
+          status: ach.status
         });
       });
     });
@@ -560,6 +563,47 @@ app.get('/api/teacher/achievements', authRequired, teacherOnly, async (req, res)
     res.json({ ok: true, achievements: allAchievements });
   } catch (err) {
     console.error('Teacher achievements error:', err);
+    res.status(500).json({ ok: false, error: 'Server error' });
+  }
+});
+
+// PATCH /api/teacher/achievements/:userId/:achId -> update achievement status
+app.patch('/api/teacher/achievements/:userId/:achId', authRequired, teacherOnly, async (req, res) => {
+  try {
+    const { userId, achId } = req.params;
+    const { status } = req.body;
+
+    if (!['pending', 'approved', 'rejected'].includes(status)) {
+      return res.status(400).json({ ok: false, error: 'Invalid status' });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ ok: false, error: 'User not found' });
+    }
+
+    const ach = user.achievements.id(achId);
+    if (!ach) {
+      return res.status(404).json({ ok: false, error: 'Achievement not found' });
+    }
+
+    ach.status = status;
+    await user.save();
+
+    res.json({ ok: true, achievement: ach });
+  } catch (err) {
+    console.error('Teacher patch achievement error:', err);
+    res.status(500).json({ ok: false, error: 'Server error' });
+  }
+});
+
+// GET /api/teacher/students -> all students
+app.get('/api/teacher/students', authRequired, teacherOnly, async (req, res) => {
+  try {
+    const users = await User.find({ role: 'student' }, 'email profile createdAt');
+    res.json({ ok: true, students: users });
+  } catch (err) {
+    console.error('Teacher get students error:', err);
     res.status(500).json({ ok: false, error: 'Server error' });
   }
 });
